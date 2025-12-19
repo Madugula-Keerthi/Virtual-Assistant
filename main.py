@@ -8,6 +8,9 @@ import os
 import subprocess
 import smtplib
 import random
+from dotenv import load_dotenv
+load_dotenv()
+
 
 
 engine = pyttsx3.init('sapi5')
@@ -58,8 +61,12 @@ def takeCommand():
 def sendEmail(to, content):
     try:
         print("Sending email...")
-        sender_email = "maadugulakeerthi2@gmail.com"
-        sender_password = "zecggjwwjmrhlndz"
+       sender_email = os.getenv("EMAIL_USER")
+        sender_password = os.getenv("EMAIL_PASS")
+
+        if not sender_email or not sender_password:
+            raise RuntimeError("Email credentials not set")
+
 
         with smtplib.SMTP('smtp.gmail.com', 587) as server:
             server.starttls()
@@ -170,3 +177,4 @@ if __name__=="__main__":
         else:
             print("Oops! My Team forgot to add this function in me ,please try another \n")
             speak("Oops! My Team forgot to add this function in me ,please try another ")
+
