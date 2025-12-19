@@ -163,7 +163,7 @@ if __name__=="__main__":
                 speak("What should I say?")
                 content = takeCommand()
                 print("Captured content:", content)  # Log the content
-                to = "maadugulakeerthi@gmail.com"
+                to = "practicemail@gmail.com"
                 sendEmail(to, content)
                 speak("Email has been sent successfully.")
             except Exception as e:
